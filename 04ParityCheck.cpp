@@ -59,3 +59,9 @@ int main() {
 }
 
 // 100110
+
+
+
+// Odd parity present
+// Parity Bit is : 1
+// Transmission Code : 1001101

@@ -3,20 +3,6 @@
 using namespace std;
 
 #define print(a)     for(auto x : a) cout << x << " "; cout << endl
-#define print2d(a)   for(auto x : a) { print(x); }
-#define printmap(a)  for(auto x : a) cout << x.first << " " << x.second << " , " << " "; cout << endl
-#define bug(...)     __f (#__VA_ARGS__, __VA_ARGS__)
-
-template<typename Arg1>
-void __f(const char* name, Arg1&& arg1) {
-    cout << name << " : " << arg1 << endl;
-}
-template<typename Arg1, typename... Args>
-void __f(const char* names, Arg1&& arg1, Args&&... args) {
-    const char* comma = strchr(names + 1, ',');
-    cout.write(names, comma - names) << " : " << arg1 << " | ";
-    __f(comma + 1, args...);
-}
 
 
 
@@ -54,7 +40,7 @@ void IP_Evaluation(string octet, vector<string>& ip){
         totalIp = pow(2,31);
         networks = pow(2,7) - 2;
         hosts = pow(2, 24)-2;
-        CIDR = 24;
+        CIDR = 8;
     }
     else if(octet[0] == '1' && octet[1] == '0'){
         classIP = "B";
@@ -69,7 +55,7 @@ void IP_Evaluation(string octet, vector<string>& ip){
         totalIp = pow(2,29);
         networks = pow(2,21) - 2;
         hosts = pow(2, 8) - 2;
-        CIDR = 8;
+        CIDR = 24;
 
     }
     else if(octet[0] == '1' && octet[1] == '1' && octet[2] == '1' && octet[3] == '0'){
@@ -178,3 +164,14 @@ int main() {
 }
 
 // 192 0 0 8
+
+
+
+// 11000000 00000000 00000000 00001000 
+// 11000000
+// CLass of IP address is : C
+// Total Addresses is : 536870912
+// Total Networks is : 2097150
+// Total Hosts is : 254
+// First Address is : 11000000 00000000 00000000 00000000 
+// Last Address is : 11000000 00000000 00000000 11111111 

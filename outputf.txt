@@ -1,8 +1,0 @@
-11000000 00000000 00000000 00001000 
-11000000
-CLass of IP address is : C
-Total Addresses is : 536870912
-Total Networks is : 2097150
-Total Hosts is : 254
-First Address is : 11000000 00000000 00000000 00000000 
-Last Address is : 11000000 11111111 11111111 11111111 

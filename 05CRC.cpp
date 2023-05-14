@@ -3,26 +3,57 @@
 using namespace std;
 
 #define print(a)     for(auto x : a) cout << x << " "; cout << endl
-#define print2d(a)   for(auto x : a) { print(x); }
-#define printmap(a)  for(auto x : a) cout << x.first << " " << x.second << " , " << " "; cout << endl
-#define bug(...)     __f (#__VA_ARGS__, __VA_ARGS__)
 
-template<typename Arg1>
-void __f(const char* name, Arg1&& arg1) {
-    cout << name << " : " << arg1 << endl;
+
+
+
+string string_xor(string a, string b){
+    string ans = "";
+    for(int i=0; i<a.size(); ++i){
+
+        if(a[i] == b[i])    ans += "0";
+        else    ans += "1";
+    }
+    return ans;
 }
-template<typename Arg1, typename... Args>
-void __f(const char* names, Arg1&& arg1, Args&&... args) {
-    const char* comma = strchr(names + 1, ',');
-    cout.write(names, comma - names) << " : " << arg1 << " | ";
-    __f(comma + 1, args...);
+
+
+
+
+string crc(string dataword, string divisor){
+
+    int k = divisor.size();
+    int m = dataword.size();
+
+    int n = m + k - 1;
+    int r = n - m;  //* r = divisor length - 1
+
+
+    string str = string_xor(dataword.substr(0, k), divisor);
+
+    string zeros(k, '0');
+
+    int i = k;
+    while(i<n){
+        str = str.substr(1, k-1);
+
+        str += "0";
+
+        if(str[0] == '0')   str = string_xor(str, zeros);
+        else    str = string_xor(str, divisor);
+
+        i++;
+    }
+
+    string remainder = str;
+    if(remainder[0] == '0'){
+        remainder = remainder.substr(1, k-1);
+    }
+
+    string codeword = dataword + remainder;
+    return codeword;
+
 }
-
-
-
-
-
-
 
 
 int main() {
@@ -35,8 +66,18 @@ int main() {
 
 
 
+    string dataword, divisor;
+    cin >> dataword >> divisor;
 
+    cout << crc(dataword, divisor) << endl;
 
 
     return 0;
 }
+
+//* i/p
+// 1001
+// 1011
+
+//* o/p
+// 1001110
